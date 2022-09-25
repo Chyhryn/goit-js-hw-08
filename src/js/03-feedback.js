@@ -4,7 +4,7 @@ const formEl = document.querySelector('.feedback-form');
 const inputEl = document.querySelector('input');
 const textareaEl = document.querySelector('textarea');
 const STORAGE_KEY = 'feedback-form-state';
-const inputData = {};
+let inputData = {};
 
 checkLocalStorage();
 
@@ -21,6 +21,7 @@ function checkLocalStorage() {
   if (savedData !== null) {
     inputEl.value = savedData.email || '';
     textareaEl.value = savedData.message || '';
+    inputData = savedData;
   }
 }
 
@@ -32,4 +33,5 @@ function onSubmitForm(event) {
   localStorage.removeItem(STORAGE_KEY);
   inputEl.value = '';
   textareaEl.value = '';
+  inputData = {};
 }
